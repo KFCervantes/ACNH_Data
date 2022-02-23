@@ -9,13 +9,27 @@ output:
 ---
 
 I like to use a lot of `tidyverse` stuff so this may be a good thing to load.
-```{r}
+```{r, results = "hide"}
 library(tidyverse) # metapackage of all tidyverse packages
 ```
 
 I played a lot of *Animal Crossing: New Horizons* since April 2020 so I thought it might be fun to look through some data for the game.
 
-The dataset includes a lot of files and it may be beneficial to look at what some of them are.
+# K.K. Slider's Funtime Collection
+I managed to successfully collect all of the K.K. Slider songs (twice since I collected all before and after the 2021 update).
+I thought it would be interesting to analyze some of the data on these songs
 ```{r}
-list.files(path = "../input")
+kk <- read_csv("../input/animal-crossing-new-horizons-nookplaza-dataset/music.csv")
+head(kk)
 ```
+
+Here we can see that most of the columns are stored as the `chr` type. This makes sense for most of the columns but there are some where it may be beneficial to change.
+
+* `Buy`: This is the buying price for the song in bells.
+This seems to be stored as a `chr` because there is a `NFS` value in the dataset to denote songs that you are unable to buy.
+It may be beneficial to replace these values with `NA`.
+
+* `Size`: This denotes the size of the object when placed down. It may help to store this as a tuple of integers.
+
+All of the other variables are stored as `dbl`. This does not make as much sense for `Sell`, which denotes the selling price in bells.
+In the game, bell price is treated as an integer, so it may be beneficial to change this to an integer type.
