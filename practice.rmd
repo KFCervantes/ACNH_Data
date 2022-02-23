@@ -1,0 +1,21 @@
+---
+title: 'Animal Crossing Stuff'
+author: 'Kaleb Cervantes'
+date: '`r Sys.Date()`'
+output:
+  html_document:
+    number_sections: true
+    toc: true
+---
+
+I like to use a lot of `tidyverse` stuff so this may be a good thing to load.
+```{r}
+library(tidyverse) # metapackage of all tidyverse packages
+```
+
+I played a lot of *Animal Crossing: New Horizons* since April 2020 so I thought it might be fun to look through some data for the game.
+
+The dataset includes a lot of files and it may be beneficial to look at what some of them are.
+```{r}
+list.files(path = "../input")
+```
